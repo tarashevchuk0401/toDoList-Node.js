@@ -1,0 +1,24 @@
+<div class="wrapper">
+
+    <form class="add" [formGroup]="form" (submit)="addNewTask()">
+        <input type="text" formControlName="description">
+        <div>
+            <input  type="file" #filePicker (change)="onImagePicked($event)">
+            <button type="button" (click)="filePicker.click()">Pick image</button>
+            <button type="submit">Add New </button>
+        </div>
+    </form>
+
+    <div class="tasks">
+        <ul *ngFor="let task of allTasks">
+            <li class="task_card">
+                <div class="text">{{task.description}} </div>
+                <div>
+                    <button>Edit</button>
+                    <button (click)="deleteTask(task.id!)">Delete </button>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -59,7 +59,14 @@ export class HomeComponent implements OnInit {
   addNewTask() { 
     const description = this.form.value.description;
     const image = this.form.value.image as File;  // Extract the File object
-    this.httpService.addTask(description, image).subscribe(d => {
+    // if(image){
+    //   this.httpService.addTask(description, image).subscribe(d => {
+    //     this.getAllTasks();
+    //     this.form.reset();
+    //   });
+    //   return
+    // }
+    this.httpService.addTask(description).subscribe(d => {
       this.getAllTasks();
       this.form.reset();
     });

@@ -14,11 +14,13 @@ export class HttpService {
    return this.http.get('http://localhost:3000/api/tasks')
   }
 
-  addTask(description: string, image: File) : Observable<any>{
+  addTask(description: string, image?: File) : Observable<any>{
     const taskData = new FormData();
     taskData.append("description", description);
     // taskData.append("isDOne", false);
-    taskData.append("image", image , description);
+    if(image){
+      taskData.append("image", image , description);
+    }
     console.log(taskData)
     return this.http.post('http://localhost:3000/api/tasks', taskData)
   }

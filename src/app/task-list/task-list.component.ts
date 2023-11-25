@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../shared/services/http.service';
+import { TaskService } from '../shared/services/http.service';
 import { Task } from '../shared/models/task.model';
-import { from, map } from 'rxjs';
+import { map } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-task-list',
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class TaskList implements OnInit {
 
   allTasks: Task[] = [];
   form!: FormGroup;
 
   constructor(
-    private httpService: HttpService,
+    private taskService: TaskService,
     private formBuilder: FormBuilder
     ){}
 
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAllTasks(){
-    this.httpService.getAllTasks()
+    this.taskService.getAllTasks()
     .pipe(map(item => {
       return item.tasks.map((task : any) => {
         return {
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
   //     description: this.form.value.description,
   //     image : this.form.value.image
   //   }
-  //   this.httpService.addTask(task.description, task.image).subscribe(d => {
+  //   this.taskService.addTask(task.description, task.image).subscribe(d => {
   //     this.getAllTasks()
   //     this.form.reset();
   //   })
@@ -60,13 +60,13 @@ export class HomeComponent implements OnInit {
     const description = this.form.value.description;
     const image = this.form.value.image as File;  // Extract the File object
     // if(image){
-    //   this.httpService.addTask(description, image).subscribe(d => {
+    //   this.taskService.addTask(description, image).subscribe(d => {
     //     this.getAllTasks();
     //     this.form.reset();
     //   });
     //   return
     // }
-    this.httpService.addTask(description).subscribe(d => {
+    this.taskService.addTask(description).subscribe(d => {
       this.getAllTasks();
       this.form.reset();
     });
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
 
   deleteTask(id: string){
     if(id){
-      this.httpService.deleteTask(id).subscribe(d => this.getAllTasks())
+      this.taskService.deleteTask(id).subscribe(d => this.getAllTasks())
     }
   }
 

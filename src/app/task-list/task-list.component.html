@@ -1,5 +1,4 @@
 <div class="wrapper">
-
     <form class="add" [formGroup]="form" (submit)="addNewTask()">
         <input type="text" formControlName="description">
         <div>
@@ -16,7 +15,6 @@
                 <div>
                     <button>Edit</button>
                     <button (click)="deleteTask(task.id!)">Delete </button>
-
                 </div>
             </li>
         </ul>

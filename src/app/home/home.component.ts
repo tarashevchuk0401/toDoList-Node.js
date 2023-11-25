@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../services/http.service';
-import { Task } from '../models/task.model';
+import { HttpService } from '../shared/services/http.service';
+import { Task } from '../shared/models/task.model';
 import { from, map } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 

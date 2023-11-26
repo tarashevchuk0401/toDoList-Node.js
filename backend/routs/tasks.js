@@ -44,11 +44,22 @@ router.get('', (req, res, next) => {
     Task.find()
         .then(documents => {
             res.status(200).json({
-                message: 'Post fetched successfuly',
+                message: 'Task fetched successfuly',
                 tasks: documents,
             })
         });
 });
+
+router.get('/:id', (req, res, next)=> {
+    console.log(req.params.id);
+    Task.findById(req.params.id)
+    .then(task => {
+        res.status(200).json({
+            message: 'Task fetched successfuly',
+            task: task,
+        })
+    })
+})
 
 router.delete('/:id', (req, res, next) => {
     Task.deleteOne({ _id: req.params.id }).then(result => {

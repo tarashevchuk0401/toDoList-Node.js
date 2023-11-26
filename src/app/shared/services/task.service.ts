@@ -8,27 +8,28 @@ import { Task } from '../models/task.model';
 })
 export class TaskService {
 
-  constructor(private http:  HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllTasks(): Observable<any>{
-   return this.http.get('http://localhost:3000/api/tasks')
+  getAllTasks(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/tasks')
   }
 
-  addTask(description: string, image?: File) : Observable<any>{
+  addTask(description: string, image?: File): Observable<any> {
     const taskData = new FormData();
     taskData.append("description", description);
     // taskData.append("isDOne", false);
-    if(image){
-      taskData.append("image", image , description);
+    if (image) {
+      taskData.append("image", image, description);
     }
     console.log(taskData)
     return this.http.post('http://localhost:3000/api/tasks', taskData)
   }
 
-  
+  getTaskById(id: string){
+    return this.http.get<{message: string, task: Task}>('http://localhost:3000/api/tasks/' + id);
+  }
 
-  deleteTask( id: string) : Observable<any>{
-    console.log('serv')
+  deleteTask(id: string): Observable<any> {
     return this.http.delete('http://localhost:3000/api/tasks/' + id);
   }
 }

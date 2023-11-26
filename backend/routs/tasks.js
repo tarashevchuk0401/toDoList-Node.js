@@ -61,6 +61,16 @@ router.get('/:id', (req, res, next)=> {
     })
 })
 
+router.put('', (req,res,next) => {
+    Task.updateOne({_id : req.body._id}, req.body)
+    .then(task => {
+        res.status(200).json({
+            message: 'Task updated successfuly',
+        })
+    })
+
+})
+
 router.delete('/:id', (req, res, next) => {
     Task.deleteOne({ _id: req.params.id }).then(result => {
         console.log(result);

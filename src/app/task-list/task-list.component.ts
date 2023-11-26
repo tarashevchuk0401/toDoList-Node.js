@@ -59,14 +59,12 @@ export class TaskList implements OnInit {
   addNewTask() { 
     const description = this.form.value.description;
     const image = this.form.value.image as File;  // Extract the File object
-    // if(image){
-    //   this.taskService.addTask(description, image).subscribe(d => {
-    //     this.getAllTasks();
-    //     this.form.reset();
-    //   });
-    //   return
-    // }
-    this.taskService.addTask(description).subscribe(d => {
+    const newTask : Task = {
+      description: this.form.value.description,
+      id: '',
+      isDone: false,
+    }
+    this.taskService.addTask(newTask).subscribe(d => {
       this.getAllTasks();
       this.form.reset();
     });

@@ -14,15 +14,15 @@ export class TaskService {
     return this.http.get('http://localhost:3000/api/tasks')
   }
 
-  addTask(description: string, image?: File): Observable<any> {
-    const taskData = new FormData();
-    taskData.append("description", description);
-    // taskData.append("isDOne", false);
-    if (image) {
-      taskData.append("image", image, description);
-    }
+  addTask(taskData: Task): Observable<any> {
+    // const taskData = new FormData();
+   
     console.log(taskData)
     return this.http.post('http://localhost:3000/api/tasks', taskData)
+  }
+
+  updateTask(taskData: Task): Observable<{message: string}>{
+    return this.http.put<{message: string}>('http://localhost:3000/api/tasks', taskData)
   }
 
   getTaskById(id: string){

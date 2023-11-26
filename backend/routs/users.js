@@ -20,10 +20,10 @@ router.post('/signup', (req, res, next) => {
                         result: result,
                     })
                 }).catch(error => {
-                res.status(500).json({
-                    error: error
+                    res.status(500).json({
+                        error: error
+                    })
                 })
-            })
         })
 })
 

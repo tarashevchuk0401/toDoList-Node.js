@@ -11,7 +11,7 @@ import { MaterialsModule } from './shared/materials/materials/materials.module';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { TaskService } from './shared/services/http.service';
+import { TaskService } from './shared/services/task.service';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 

@@ -1,38 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
-*{
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-button{
+//   <--- Variables --->
+
+$color_red: #e63946;
+$color_grey: #f1faee;
+$color_main_blue: #7ea0b9;
+$color_light_blue: #a8dadc;
+$color_dark_blue: #457b9d;
+$color_extra_dark_blue: #1d3557;
+
+
+.button_main {
+    background-color: $color_grey;
+    font-weight: 400;
     margin: 10px;
-    border: none;
+    border: 2px solid $color_grey;
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
+    transition: all .2s ease-in;
 
-    &:hover{
-        opacity: 0.8;
+    &:hover {
+        background-color: $color_light_blue;
+        border: 2px solid $color_dark_blue;
     }
 }
 
-input{
+input {
     margin: 10px;
     border: none;
     border-radius: 10px;
     padding: 10px;
+    box-shadow: 8px 14px 11px -5px rgba(66, 68, 90, 1);
+
 }
 
-li{
+li {
     background-color: white;
+    box-shadow: 8px 14px 11px -5px rgba(66, 68, 90, 1);
     padding: 10px;
     margin: 10px;
     width: 80vw;
     list-style: none;
-    border: 2px solid black;
+    color: $color_extra_dark_blue;
+    font-weight: 600;
     border-radius: 10px;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

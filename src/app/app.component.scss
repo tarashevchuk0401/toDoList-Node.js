@@ -1,6 +1,16 @@
-main{
-    background-color: rgb(154, 154, 154);
+@import '../styles.scss';
+
+main {
+    background: rgb(205, 213, 222);
+    background: linear-gradient(90deg, rgba(205, 213, 222, 1) 0%, rgba(126, 160, 185, 1) 100%);
     margin: 0;
     padding: 0;
     min-height: 100vh;
+}
+
+
+mat-toolbar {
+    background-color: $color_dark_blue;
+    display: flex;
+    justify-content: space-between;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../shared/services/http.service';
+import { TaskService } from '../shared/services/task.service';
 import { Task } from '../shared/models/task.model';
 import { map } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';

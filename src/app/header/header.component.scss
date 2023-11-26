@@ -1,0 +1,21 @@
+@import '/src/styles.scss';
+
+.wrapper{
+
+}
+
+.header_button{
+    margin-left: 15px;
+    padding: 5px;
+    background-color: $color_dark_blue;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: $color_extra_dark_blue;
+    cursor: pointer;
+    transition: all .2s ease-in;
+
+    &:hover{
+        color: black;
+    }
+}

@@ -14,6 +14,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { TaskService } from './shared/services/task.service';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AuthService } from './shared/services/auth.service';
 
 
 
@@ -35,7 +36,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ReactiveFormsModule, 
     FormsModule, BrowserAnimationsModule,
   ],
-  providers: [TaskService],
+  providers: [TaskService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

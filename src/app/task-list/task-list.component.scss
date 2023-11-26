@@ -1,12 +1,13 @@
 @import '/src/styles.scss';
 
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.add{
+.add {
     margin: 50px auto;
     padding: 0;
     display: flex;
@@ -15,24 +16,54 @@
 
 }
 
-.tasks{
+mat-form-field{
+   width: 340px;
+}
+
+.tasks {
     display: flex;
     align-items: center;
     flex-direction: column-reverse;
     width: 100%;
 }
 
-.task_card{
+.task_card {
     display: flex;
     align-items: baseline;
 }
 
-.text{
+.text {
     display: flex;
     flex-grow: 1;
 }
 
-input[type="file"]{
+input[type="file"] {
     visibility: hidden;
 }
 
+.action {
+    display: flex;
+    justify-content: center;
+}
+
+mat-spiner {
+    z-index: 2;
+}
+
+.error_container {
+    margin-top: 7px;
+    height: 20px;
+    text-align: center;
+    color: $color_red;
+    font-weight: 500;
+}
+
+.red {
+    background-color: $color_red;
+    border: 2px solid $color_red;
+
+    &:hover {
+        background-color: $color_red;
+        border: 2px solid black;
+    }
+}

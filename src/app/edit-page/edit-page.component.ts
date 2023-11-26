@@ -11,7 +11,7 @@ import { Subscription, switchMap } from 'rxjs';
 })
 export class EditPageComponent implements OnInit, OnDestroy {
   currentTaskId: string = '';
-  currentTask: Task | undefined;
+  currentTask!: Task ;
   private routeSubscription = new Subscription;
   private updateSubscription = new Subscription;
 
@@ -28,7 +28,14 @@ export class EditPageComponent implements OnInit, OnDestroy {
         return this.taskService.getTaskById(this.currentTaskId);
       }))
       .subscribe(data => {
-        this.currentTask = data.task;
+        const fetchedTask: Task  ={
+          id: data.task._id,
+          description: data.task.description,
+          isDone: data.task.isDone,
+        }
+        this.currentTask = fetchedTask;
+        console.log(this.currentTask)
+        
       })
   }
 

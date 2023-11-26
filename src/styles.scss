@@ -13,6 +13,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 //   <--- Variables --->
@@ -39,18 +40,6 @@ $color_extra_dark_blue: #1d3557;
         background-color: $color_light_blue;
         border: 2px solid $color_dark_blue;
     }
-}
-
-.custom_input {
-    min-width: 320px;
-    width: 50%;
-    max-width: 600px;
-    margin: 10px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 8px 14px 11px -5px rgba(66, 68, 90, 1);
-
 }
 
 li {

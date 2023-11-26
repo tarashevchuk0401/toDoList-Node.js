@@ -26,7 +26,7 @@ export class TaskService {
   }
 
   getTaskById(id: string){
-    return this.http.get<{message: string, task: Task}>('http://localhost:3000/api/tasks/' + id);
+    return this.http.get<{message: string, task: any}>('http://localhost:3000/api/tasks/' + id);
   }
 
   deleteTask(id: string): Observable<any> {

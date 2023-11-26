@@ -1,18 +1,30 @@
 <div class="wrapper">
     <form class="add" [formGroup]="form" (submit)="addNewTask()">
-        <input class="custom_input" type="text" formControlName="description">
-        <div>
+        <mat-form-field>
+            <mat-label>Task</mat-label>
+            <textarea formControlName="description" matInput cols="150" rows="3"></textarea>
+        </mat-form-field>
+      
+        <!-- <input class="custom_input" type="text" formControlName="description"> -->
+        <div class="error_container">
+            <mat-error class="error" *ngIf="form.get('description')?.hasError('required') && form.get('description')?.touched">Enter value</mat-error>
+            <ng-container class="error" *ngIf="form.get('description')?.hasError('minlength')">Enter more than 3 characters</ng-container>
+            <ng-container class="error" *ngIf="form.get('description')?.hasError('maxlength')">Enter less than 300 characters</ng-container>
+        </div>
+        <div class="action">
             <button class="button_main" type="submit">Add New </button>
         </div>
     </form>
 
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <div class="tasks">
         <ul *ngFor="let task of allTasks">
             <li class="task_card">
+                <mat-checkbox class="example-margin" [color]="'primary'" [checked]="task.isDone" (change)="onChangeIsDone($event.checked, task)"></mat-checkbox>
                 <div class="text">{{task.description}} </div>
                 <div>
                     <button class="button_main" routerLink="/edit-page/{{task.id}}">Edit</button>
-                    <button class="button_main" (click)="deleteTask(task.id!)">Delete </button>
+                    <button class="button_main red" (click)="deleteTask(task.id)">Delete </button>
                 </div>
             </li>
         </ul>

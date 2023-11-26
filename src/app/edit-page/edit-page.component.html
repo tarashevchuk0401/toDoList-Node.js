@@ -1,7 +1,12 @@
 <div class="wrapper">
-    <textarea class="custom_input " type="text" [value]="currentTask?.description" #description></textarea>
-    <div class="actions">
-        <button class="button_main" (click)="editTask(description.value)" >Edit</button>
-        <button class="button_main cancel">Cancel</button>
-    </div>
+    <form #edit="ngForm" (ngSubmit)="editTask(edit.value.description)">
+        <mat-form-field>
+            <textarea matInput type="text" [(ngModel)]="currentTask.description" name="description" ngModel
+                minlength="1" #description required></textarea>
+        </mat-form-field>
+        <div class="actions">
+            <button class="button_main" type="submit" [disabled]="edit.invalid">Edit</button>
+            <button class="button_main cancel">Cancel</button>
+        </div>
+    </form>
 </div>

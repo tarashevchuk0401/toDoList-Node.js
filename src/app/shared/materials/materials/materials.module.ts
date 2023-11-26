@@ -8,6 +8,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -17,6 +20,9 @@ import {MatIconModule} from '@angular/material/icon';
     CommonModule
   ],
   exports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
     MatButtonModule,
     MatToolbarModule,
     MatSnackBarModule,

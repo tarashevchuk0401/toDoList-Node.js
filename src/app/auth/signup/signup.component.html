@@ -1,1 +1,45 @@
-<p>signup works!</p>
+<!-- <div class="wrapper">
+    <form (ngSubmit)="onSubmit(login)" #login="ngForm">
+        <input class="custom_input" type="email" name="email" ngModel>
+        <input class="custom_input" type="password" name="passworc" ngModel>
+        <div class="action">
+            <button class="button_main" type="submit">SignUp</button>
+        </div>
+    </form>
+</div> -->
+
+<div class="wrapper">
+    <form (ngSubmit)="onSubmit(login)" #login="ngForm">
+
+        <mat-form-field>
+            <mat-label>Email*</mat-label>
+            <input matInput type="email" name="email" ngModel pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" ngModel required minlength="6">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" type="text" name="name" ngModel required minlength="6">
+        </mat-form-field>
+
+        <div class="error_container">
+            <div
+                *ngIf="login.controls['email'].invalid && (login.controls['email'].dirty || login.controls['email'].touched)">
+                <div *ngIf="login.controls['email'].hasError('required')">Email is required</div>
+                <div *ngIf="login.controls['email'].hasError('pattern')">Invalid email format</div>
+            </div>
+            <div
+                *ngIf="login.controls['password'].invalid && (login.controls['password'].dirty || login.controls['password'].touched)">
+                <div *ngIf="login.controls['password'].hasError('required')">Password is required</div>
+                <div *ngIf="login.controls['password'].hasError('minlength')">Password must be at least 6 characters
+                    long</div>
+            </div>
+        </div>
+        <div class="action">
+            <button class="button_main" type="submit" [disabled]="login.invalid">SignUp</button>
+        </div>
+    </form>
+</div>

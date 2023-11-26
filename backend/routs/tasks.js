@@ -62,7 +62,8 @@ router.get('/:id', (req, res, next)=> {
 })
 
 router.put('', (req,res,next) => {
-    Task.updateOne({_id : req.body._id}, req.body)
+
+    Task.updateOne({_id : req.body.id}, req.body)
     .then(task => {
         res.status(200).json({
             message: 'Task updated successfuly',

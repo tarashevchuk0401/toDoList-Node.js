@@ -29,10 +29,10 @@ $color_extra_dark_blue: #1d3557;
 .button_main {
     background-color: $color_grey;
     font-weight: 400;
-    margin: 10px;
+    margin: 6px;
     border: 2px solid $color_grey;
     border-radius: 10px;
-    padding: 10px;
+    padding: 6px;
     cursor: pointer;
     transition: all .2s ease-in;
 
@@ -45,9 +45,9 @@ $color_extra_dark_blue: #1d3557;
 li {
     background-color: white;
     box-shadow: 8px 14px 11px -5px rgba(66, 68, 90, 1);
-    padding: 10px;
-    margin: 10px;
-    width: 80vw;
+    padding: 6px;
+    margin: 6px;
+    width: 65vw;
     list-style: none;
     color: $color_extra_dark_blue;
     font-weight: 600;

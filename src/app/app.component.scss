@@ -13,4 +13,6 @@ mat-toolbar {
     background-color: $color_dark_blue;
     display: flex;
     justify-content: space-between;
+    z-index: 2;
+    position: relative;
 }

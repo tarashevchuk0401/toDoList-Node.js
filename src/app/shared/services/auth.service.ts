@@ -18,4 +18,8 @@ export class AuthService {
   signup(user: User): Observable<any> {
     return this.http.post('http://localhost:3000/api/users/signup', user)
   }
+
+  login(email:string, password: string){
+    return this.http.post<{token: string, expiresIn: number, userId: string}>('http://localhost:3000/api/users/login', {email:email, password: password})
+  }
 }

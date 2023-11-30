@@ -50,6 +50,10 @@ export class SignupComponent implements OnInit {
   }
 
   logIn(authForm: NgForm){
-    
+      this.authServise.login(authForm.value.email, authForm.value.password).subscribe((d) => {
+        console.log(d);
+        authForm.reset();
+      })
+
   }
 }

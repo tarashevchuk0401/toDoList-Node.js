@@ -14,7 +14,9 @@ form{
 
 .action{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .error_container{
@@ -23,4 +25,22 @@ form{
     text-align: center;
     color: $color_red;
     font-weight: 500;
+}
+
+.redirect{
+    font-size: 18px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.link{
+    cursor: pointer;
+    color: $color_extra_dark_blue;
+    font-weight: 500;
+}
+
+.link_container{
+    text-align: center;
 }

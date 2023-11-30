@@ -1,15 +1,5 @@
-<!-- <div class="wrapper">
-    <form (ngSubmit)="onSubmit(login)" #login="ngForm">
-        <input class="custom_input" type="email" name="email" ngModel>
-        <input class="custom_input" type="password" name="passworc" ngModel>
-        <div class="action">
-            <button class="button_main" type="submit">SignUp</button>
-        </div>
-    </form>
-</div> -->
-
 <div class="wrapper">
-    <form (ngSubmit)="onSubmit(login)" #login="ngForm">
+    <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm">
 
         <mat-form-field>
             <mat-label>Email*</mat-label>
@@ -18,28 +8,44 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput type="password" name="password" ngModel required minlength="6">
+            <input matInput type="password" name="password" ngModel required minlength="2">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="authMode === 'signup'">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" type="text" name="name" ngModel required minlength="1">
+            <input matInput placeholder="Name" type="text" name="name" ngModel minlength="1">
         </mat-form-field>
 
-        <div class="error_container">
+        <div class="error_container" *ngIf="authForm.invalid">
             <div
-                *ngIf="login.controls['email'].invalid && (login.controls['email'].dirty || login.controls['email'].touched)">
-                <div *ngIf="login.controls['email'].hasError('required')">Email is required</div>
-                <div *ngIf="login.controls['email'].hasError('pattern')">Invalid email format</div>
+                *ngIf="authForm.controls['email'].invalid && (authForm.controls['email'].dirty || authForm.controls['email'].touched)">
+                <div *ngIf="authForm.controls['email'].hasError('required')">Email is required</div>
+                <div *ngIf="authForm.controls['email'].hasError('pattern')">Invalid email format</div>
             </div>
             <div
-                *ngIf="login.controls['password'].invalid && (login.controls['password'].dirty || login.controls['password'].touched)">
-                <div *ngIf="login.controls['password'].hasError('required')">Password is required</div>
-                <div *ngIf="login.controls['password'].hasError('minlength')">Password must be at least 6 characters
+                *ngIf="authForm.controls['password'].invalid && (authForm.controls['password'].dirty || authForm.controls['password'].touched)">
+                <div *ngIf="authForm.controls['password'].hasError('required')">Password is required</div>
+                <div *ngIf="authForm.controls['password'].hasError('minlength')">Password must be at least 6 characters
                     long</div>
             </div>
         </div>
         <div class="action">
-            <button class="button_main" type="submit" [disabled]="login.invalid">SignUp</button>
+            <button class="button_main" type="submit" [disabled]="authForm.invalid">SignUp</button>
+            <ng-container *ngIf="authMode === 'signup'">
+                <div class="redirect">
+                    <div>Already hava account?</div>
+                    <div class="link_container">Go to
+                        <a class="link" (click)="changeAuthMode('login')">Login</a>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="authMode === 'login'">
+                <div class="redirect">
+                    <div>Dont hava account?</div>
+                    <div class="link_container">Go to
+                        <a class="link" (click)="changeAuthMode('signup')">SignUp</a>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </form>
 </div>

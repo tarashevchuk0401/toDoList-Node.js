@@ -17,7 +17,6 @@ export class TaskList implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {

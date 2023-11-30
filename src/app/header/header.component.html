@@ -1,5 +1,9 @@
 <div class="wrapper">
-    <a class="header_button" routerLink="login">LogIn</a>
-    <a class="header_button" routerLink="signup">SignUp</a>
+    <!-- <a class="header_button" routerLink="login">LogIn</a>
+    <a class="header_button" routerLink="signup">SignUp</a> -->
+    <a class="header_button" routerLink="signup" (click)="changeAuthorizationMode('signup')">SignUp</a> 
+    <a class="header_button" routerLink="signup" (click)="changeAuthorizationMode('login')">LogIn</a> 
+
+
     <button class="header_button">Logout</button>
 </div>

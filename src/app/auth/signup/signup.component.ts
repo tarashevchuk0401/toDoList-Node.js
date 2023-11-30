@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -8,19 +8,48 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 
-  constructor(private authServise: AuthService){}
+  authMode: string = '';
 
-  onSubmit(signUpForm: NgForm){
+  constructor(
+    private authServise: AuthService,
+  ) { }
+
+  ngOnInit(): void {
+    this.authServise.authorizationMode.subscribe((data: string) => {
+      this.authMode = data
+      console.log(this.authMode)
+    })
+  }
+
+  changeAuthMode(value: string): void{
+    this.authServise.authorizationMode.next(value);
+  }
+
+  onSubmit(authForm: NgForm): void {
+    if(this.authMode === 'signup'){
+      this.signUp(authForm);
+    } else if(this.authMode === 'login'){
+      this.logIn(authForm);
+    }
+  }
+  
+  signUp(authForm: NgForm): void{
     const newUser: User = {
       id: '',
-      email: signUpForm.value.email,
-      password: signUpForm.value.password,
-      name: signUpForm.value.name,
+      email: authForm.value.email,
+      password: authForm.value.password,
+      name: authForm.value.name,
     }
+  
+    this.authServise.signup(newUser).subscribe((d) => {
+      console.log(d)
+      authForm.reset()
+    })
+  }
+
+  logIn(authForm: NgForm){
     
-    console.log(newUser)
-    this.authServise.signup(newUser).subscribe()
   }
 }

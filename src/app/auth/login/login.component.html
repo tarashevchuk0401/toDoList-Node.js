@@ -1,1 +1,35 @@
-<p>login works!</p>
+<!-- <div class="wrapper">
+    <form (ngSubmit)="onSubmit(signUp)" #signUp="ngForm">
+
+        <mat-form-field>
+            <mat-label>Email*</mat-label>
+            <input matInput type="email" name="email" ngModel pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" ngModel required minlength="2">
+        </mat-form-field>
+
+        <div class="error_container">
+            <div
+                *ngIf="signUp.controls['email'].invalid && (signUp.controls['email'].dirty || signUp.controls['email'].touched)">
+                <div *ngIf="signUp.controls['email'].hasError('required')">Email is required</div>
+                <div *ngIf="signUp.controls['email'].hasError('pattern')">Invalid email format</div>
+            </div>
+            <div
+                *ngIf="signUp.controls['password'].invalid && (signUp.controls['password'].dirty || signUp.controls['password'].touched)">
+                <div *ngIf="signUp.controls['password'].hasError('required')">Password is required</div>
+                <div *ngIf="signUp.controls['password'].hasError('minlength')">Password must be at least 6 characters
+                    long</div>
+            </div>
+        </div>
+        <div class="action">
+            <button class="button_main" type="submit" [disabled]="signUp.invalid">SignUp</button>
+            <div class="redirect">Dont hava account?
+                <span>Go to </span>
+                <a class="link" routerLink="/signup">SignUp</a>
+            </div>
+        </div>
+    </form>
+</div> -->

@@ -8,13 +8,20 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
+  isAuthenticated: boolean = false;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.getAuthStatusListener().subscribe(response => this.isAuthenticated = response)
   }
   
   changeAuthorizationMode(value: string){
     this.authService.authorizationMode.next(value);
+  }
+
+  logOut(){
+    this.isAuthenticated = false;
+    this.authService.logout()
   }
 }

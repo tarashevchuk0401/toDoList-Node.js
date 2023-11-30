@@ -15,7 +15,7 @@ router.post('/signup', (req, res, next) => {
             })
             user.save()
                 .then(result => {
-                    res.status(200).json({
+                  return  res.status(200).json({
                         message: 'New user created',
                         result: result,
                     })
@@ -42,7 +42,7 @@ router.post('/login', (req, res, next) => {
         })
         .then(result => {
             if (!result) {
-                res.status(401).json({
+               return res.status(401).json({
                     message: 'Email not found'
                 })
             }
@@ -52,16 +52,16 @@ router.post('/login', (req, res, next) => {
                 userId: fetchedUser.id
             } ,'secret_this_should_be_longer', { expiresIn: "1h" });
 
-            res.status(200).json({
+          return  res.status(200).json({
                 token: token,
                 expiresIn: 3600,
                 userId: fetchedUser.id
             })
         })
         .catch(err => {
-            return res.status(401).json({
-                message: "Authorization failed"
-            })
+            //  res.status(401).json({
+            //     message: "Authorization failed"
+            // })
         })
 })
 

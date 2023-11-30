@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
     } else if(this.authMode === 'login'){
       this.logIn(authForm);
     }
+    authForm.reset()
   }
   
   signUp(authForm: NgForm): void{
@@ -43,17 +44,11 @@ export class SignupComponent implements OnInit {
       name: authForm.value.name,
     }
   
-    this.authServise.signup(newUser).subscribe((d) => {
-      console.log(d)
-      authForm.reset()
-    })
+    this.authServise.signup(newUser)
   }
 
   logIn(authForm: NgForm){
-      this.authServise.login(authForm.value.email, authForm.value.password).subscribe((d) => {
-        console.log(d);
-        authForm.reset();
-      })
+      this.authServise.login(authForm.value.email, authForm.value.password)
 
   }
 }

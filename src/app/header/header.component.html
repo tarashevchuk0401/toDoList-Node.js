@@ -5,5 +5,5 @@
     <a class="header_button" routerLink="signup" (click)="changeAuthorizationMode('login')">LogIn</a> 
 
 
-    <button class="header_button">Logout</button>
+    <button class="header_button" *ngIf="isAuthenticated" (click)="logOut()">Logout</button>
 </div>

@@ -12,6 +12,10 @@ form{
     justify-content: center;
 }
 
+mat-form-field{
+    width: 300px;
+}
+
 .action{
     display: flex;
     flex-direction: column;
@@ -20,7 +24,7 @@ form{
 }
 
 .error_container{
-    margin-top: 7px;
+    margin-top: 10px;
     height: 45px;
     text-align: center;
     color: $color_red;
@@ -43,4 +47,9 @@ form{
 
 .link_container{
     text-align: center;
+}
+
+.empty_box{
+    height: 50px;
+
 }

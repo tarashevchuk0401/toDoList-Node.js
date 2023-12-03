@@ -1,7 +1,9 @@
 @import '/src/styles.scss';
 
 .wrapper{
-
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
 }
 
 .header_button{

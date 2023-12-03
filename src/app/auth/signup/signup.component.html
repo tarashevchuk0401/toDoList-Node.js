@@ -10,22 +10,27 @@
             <mat-label>Password</mat-label>
             <input matInput type="password" name="password" ngModel required minlength="2">
         </mat-form-field>
-        <mat-form-field *ngIf="authMode === 'signup'">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" type="text" name="name" ngModel minlength="1">
-        </mat-form-field>
+        <div class="empty_box">
+            <mat-form-field *ngIf="authMode === 'signup'">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" type="text" name="name" ngModel minlength="1">
+            </mat-form-field>
+        </div>
 
-        <div class="error_container" *ngIf="authForm.invalid">
-            <div
-                *ngIf="authForm.controls['email'].invalid && (authForm.controls['email'].dirty || authForm.controls['email'].touched)">
-                <div *ngIf="authForm.controls['email'].hasError('required')">Email is required</div>
-                <div *ngIf="authForm.controls['email'].hasError('pattern')">Invalid email format</div>
-            </div>
-            <div
-                *ngIf="authForm.controls['password'].invalid && (authForm.controls['password'].dirty || authForm.controls['password'].touched)">
-                <div *ngIf="authForm.controls['password'].hasError('required')">Password is required</div>
-                <div *ngIf="authForm.controls['password'].hasError('minlength')">Password must be at least 6 characters
-                    long</div>
+        <div class="empty_box">
+            <div class="error_container " *ngIf="authForm.invalid">
+                <div
+                    *ngIf="authForm.controls['email'].invalid && (authForm.controls['email'].dirty || authForm.controls['email'].touched)">
+                    <div *ngIf="authForm.controls['email'].hasError('required')">Email is required</div>
+                    <div *ngIf="authForm.controls['email'].hasError('pattern')">Invalid email format</div>
+                </div>
+                <div
+                    *ngIf="authForm.controls['password'].invalid && (authForm.controls['password'].dirty || authForm.controls['password'].touched)">
+                    <div *ngIf="authForm.controls['password'].hasError('required')">Password is required</div>
+                    <div *ngIf="authForm.controls['password'].hasError('minlength')">Password must be at least 6
+                        characters
+                        long</div>
+                </div>
             </div>
         </div>
         <div class="action">

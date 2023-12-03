@@ -23,7 +23,8 @@
                 <mat-checkbox class="example-margin" [color]="'primary'" [checked]="task.isDone" (change)="onChangeIsDone($event.checked, task)"></mat-checkbox>
                 <div class="text">{{task.description}} </div>
                 <div>
-                    <button class="button_main" routerLink="/edit-page/{{task.id}}">Edit</button>
+                    <button class="button_main" routerLink="/edit-page/{{task.id}}" >Edit</button>
+                    <!-- <button class="button_main" (click)="cons(task.id)" >Edit</button> -->
                     <button class="button_main red" (click)="deleteTask(task.id)">Delete </button>
                 </div>
             </li>

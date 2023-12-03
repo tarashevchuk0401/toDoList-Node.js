@@ -29,12 +29,14 @@ $color_extra_dark_blue: #1d3557;
 .button_main {
     background-color: $color_grey;
     font-weight: 400;
+    font-size: 20px;
     margin: 6px;
     border: 2px solid $color_grey;
     border-radius: 10px;
-    padding: 6px;
+    padding: 8px;
     cursor: pointer;
     transition: all .2s ease-in;
+    text-transform: capitalize;
 
     &:hover {
         background-color: $color_light_blue;

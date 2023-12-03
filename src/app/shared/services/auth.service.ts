@@ -36,8 +36,26 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  signup(user: User): Observable<any> {
-    return this.http.post('http://localhost:3000/api/users/signup', user)
+  signup(user: User) {
+    return this.http.post<{ token: string, expiresIn: number, userId: string }>('http://localhost:3000/api/users/signup', user)
+    .subscribe(response => {
+      const token = response.token;
+      if (token) {
+        this.token = token;
+        this.isAuthenticated = true;
+        this.userId = response.userId;
+        this.authStatusListener.next(true);
+
+        const expirationInDuration = response.expiresIn;
+        const now = new Date();
+        const expirationDate = new Date(now.getTime() + expirationInDuration * 1000)
+        this.saveAuthData(token, expirationDate, this.userId);
+        this.setAuthTimer(response.expiresIn);
+        this.router.navigate(['task']);
+      }
+
+
+    })
   }
 
   login(email: string, password: string) {

@@ -9,7 +9,7 @@ import { authGuardGuard } from './shared/auth-guard.guard';
 const routes: Routes = [
   {path: '', component: SignupComponent},
   {path: 'task', component: TaskList, canActivate: [authGuardGuard]},
-  {path: 'edit-page/:id', component: EditPageComponent, canActivate: [authGuardGuard]},
+  {path: 'edit-page/:id', component: EditPageComponent},
   {path: 'signup', component: SignupComponent},
   {path: '**', component: SignupComponent},
 

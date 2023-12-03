@@ -1,6 +1,6 @@
 <div class="wrapper">
     <form #edit="ngForm" (ngSubmit)="editTask(edit.value.description)">
-        <mat-form-field>
+        <mat-form-field *ngIf="currentTask">
             <textarea matInput type="text" [(ngModel)]="currentTask.description" name="description" ngModel
                 minlength="1" #description required></textarea>
         </mat-form-field>

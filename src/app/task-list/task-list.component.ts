@@ -19,6 +19,10 @@ export class TaskList implements OnInit {
     private taskService: TaskService,
   ) { }
 
+  cons(text:string){
+    console.log(text)
+  }
+
   ngOnInit(): void {
     this.getAllTasks();
     this.form = new FormGroup({
@@ -34,10 +38,12 @@ export class TaskList implements OnInit {
             id: task._id,
             description: task.description,
             isDone: task.isDone,
+            creator: task.creator
           }
         })
       }))
       .subscribe(d => {
+        
         this.allTasks = d;
       })
   }
@@ -53,6 +59,7 @@ export class TaskList implements OnInit {
       description: this.form.value.description,
       id: '',
       isDone: false,
+      creator: '',
     }
 
     this.taskService.addTask(newTask).pipe(delay(300)).subscribe(d => {

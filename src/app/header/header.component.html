@@ -3,8 +3,10 @@
       <a  class="header_button" routerLink="task">Tasks</a>
   </div>
   <div class="rigth">
+    <ng-container *ngIf="!isAuthenticated" >
       <a class="header_button" routerLink="signup" (click)="changeAuthorizationMode('signup')">SignUp</a> 
       <a class="header_button" routerLink="signup" (click)="changeAuthorizationMode('login')">LogIn</a> 
+    </ng-container>
       <button class="header_button" *ngIf="isAuthenticated" (click)="logOut()">Logout</button>
   </div>
 </div>

@@ -4,6 +4,29 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
+// router.post('/signup', (req, res, next) => {
+//     const hash = bcrypt.hash(req.body.password, 10)
+//         .then(hash => {
+//             const user = new User({
+//                 id: req.body.id,
+//                 email: req.body.email,
+//                 password: hash,
+//                 name: req.body.name,
+//             })
+//             user.save()
+//                 .then(result => {
+//                     res.status(200).json({
+//                         message: 'New user created',
+//                         result: result,
+//                     })
+//                 })
+//                 .catch(error => {
+//                     res.status(500).json({
+//                         error: error
+//                     })
+//                 })
+//         })
+// })
 router.post('/signup', (req, res, next) => {
     const hash = bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -15,20 +38,31 @@ router.post('/signup', (req, res, next) => {
             })
             user.save()
                 .then(result => {
-                  return  res.status(200).json({
-                        message: 'New user created',
-                        result: result,
+                    if (!result) {
+                        return res.status(401).json({
+                            message: 'Failed'
+                        })
+                    }
+
+                    const token = jwt.sign({
+                        email: result.email,
+                        userId: result.id
+                    }, 'secret_this_should_be_longer', { expiresIn: "1h" });
+
+                    return res.status(200).json({
+                        token: token,
+                        expiresIn: 3600,
+                        userId: result.id
                     })
                 }).catch(error => {
-                    res.status(500).json({
-                        error: error
+                    return res.status(400).json({
+                        message: error
                     })
                 })
         })
 })
 
 router.post('/login', (req, res, next) => {
-    console.log(req.header)
     let fetchedUser;
     User.findOne({ email: req.body.email })
         .then(user => {
@@ -43,7 +77,7 @@ router.post('/login', (req, res, next) => {
         })
         .then(result => {
             if (!result) {
-               return res.status(401).json({
+                return res.status(401).json({
                     message: 'Email not found'
                 })
             }
@@ -51,9 +85,9 @@ router.post('/login', (req, res, next) => {
             const token = jwt.sign({
                 email: fetchedUser.email,
                 userId: fetchedUser.id
-            } ,'secret_this_should_be_longer', { expiresIn: "1h" });
+            }, 'secret_this_should_be_longer', { expiresIn: "1h" });
 
-          return  res.status(200).json({
+            return res.status(200).json({
                 token: token,
                 expiresIn: 3600,
                 userId: fetchedUser.id

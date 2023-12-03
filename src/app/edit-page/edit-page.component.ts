@@ -32,6 +32,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
           id: data.task._id,
           description: data.task.description,
           isDone: data.task.isDone,
+          creator: data.task.creator
         }
         this.currentTask = fetchedTask;
         console.log(this.currentTask)
@@ -52,7 +53,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
     if (this.currentTask) {
       this.currentTask = { ...this.currentTask, description: description };
       this.updateSubscription = this.taskService.updateTask(this.currentTask).subscribe(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['task'])
       });
     }
   }

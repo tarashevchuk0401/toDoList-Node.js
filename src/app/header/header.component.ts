@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit{
     
     this.authService.getAuthStatusListener().subscribe(response =>{
        this.isAuthenticated = response
-      console.log(this.isAuthenticated)
       })
     
   }

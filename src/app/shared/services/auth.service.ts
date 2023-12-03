@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   authorizationMode = new BehaviorSubject('login');
+  private token: string = '';
   private isAuthenticated: boolean = false;
-  private token: string | undefined | null;
   private tokenTimer: any;
   private userId: string | undefined | null;
   authStatusListener = new Subject<boolean>();
@@ -19,6 +19,10 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
   ) { }
+
+  getToken(){
+    return this.token;
+  }
 
   changeAuthorizationMode(value: string): void {
     this.authorizationMode.next(value);
@@ -51,7 +55,7 @@ export class AuthService {
           const expirationDate = new Date(now.getTime() + expirationInDuration * 1000)
           this.saveAuthData(token, expirationDate, this.userId);
           this.setAuthTimer(response.expiresIn);
-          this.router.navigate(['/']);
+          this.router.navigate(['task']);
         }
 
 
@@ -79,7 +83,7 @@ export class AuthService {
     const isInFuture = new Date(authInformation.expirationDate!) > now;
     const expiresIn = new Date(authInformation.expirationDate!).getTime() - now.getTime();
     if(expiresIn > 0){
-      this.token = authInformation.token;
+      this.token = authInformation.token!;
       this.isAuthenticated = true;
       this.userId = authInformation.userId;
       this.authStatusListener.next(true);

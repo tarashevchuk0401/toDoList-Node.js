@@ -1,12 +1,19 @@
-<div class="wrapper">
-    <form #edit="ngForm" (ngSubmit)="editTask(edit.value.description)">
-        <mat-form-field *ngIf="currentTask">
-            <textarea matInput type="text" [(ngModel)]="currentTask.description" name="description" ngModel
-                minlength="1" #description required></textarea>
-        </mat-form-field>
-        <div class="actions">
-            <button class="button_main" type="submit" [disabled]="edit.invalid">Edit</button>
-            <button class="button_main cancel">Cancel</button>
-        </div>
-    </form>
+<div class="wrapper" >
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <ng-container *ngIf="!isLoading">
+        <form #edit="ngForm" (ngSubmit)="editTask(edit.value.description)">
+            <mat-form-field *ngIf="currentTask">
+                <textarea matInput cols="30" rows="9" type="text" [(ngModel)]="currentTask.description"
+                    name="description" ngModel minlength="1" #description required></textarea>
+            </mat-form-field>
+            <div class="actions">
+                <button class="button_main blue" type="submit" [disabled]="edit.invalid">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button class="button_main cancel red">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </form>
+    </ng-container>
 </div>

@@ -7,6 +7,12 @@
     align-items: center;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .add {
     margin: 30px auto 0 auto ;
     padding: 0;
@@ -17,7 +23,7 @@
 }
 
 mat-form-field{
-   width: 340px;
+   width: 640px;
 }
 
 .tasks {
@@ -29,7 +35,7 @@ mat-form-field{
 
 .task_card {
     display: flex;
-    align-items: baseline;
+    align-items: center;
 }
 
 .text {
@@ -46,8 +52,9 @@ input[type="file"] {
     justify-content: center;
 }
 
-mat-spiner {
+mat-spinner {
     z-index: 2;
+    margin: 100px auto;
 }
 
 .error_container {
@@ -65,5 +72,19 @@ mat-spiner {
     &:hover {
         background-color: $color_red;
         border: 2px solid black;
+    }
+}
+
+.task_action{
+    display: flex;
+}
+
+.blue{
+    background-color: $color_dark_blue;
+}
+
+@media (max-width: 768px) {
+    mat-form-field{
+        width: 320px;
     }
 }

@@ -15,9 +15,6 @@ export class TaskService {
   }
 
   addTask(taskData: Task): Observable<any> {
-    // const taskData = new FormData();
-   
-    console.log(taskData)
     return this.http.post('http://localhost:3000/api/tasks', taskData)
   }
 

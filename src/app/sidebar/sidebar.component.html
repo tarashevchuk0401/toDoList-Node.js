@@ -1,5 +1,12 @@
 <div class="wrapper">
-    <a class="sidebar_button" routerLink="login">LogIn</a>
-    <a class="sidebar_button" routerLink="signUp">SignUp</a>
-    <button class="sidebar_button">LogOut</button>
+    <a class="sidebar_button" routerLink="task">Tasks</a>
+    <div class="auth_action">
+        <ng-container *ngIf="!isAuthenticated">
+            <a class="sidebar_button" routerLink="login">LogIn</a>
+            <a class="sidebar_button" routerLink="signUp">SignUp</a>
+        </ng-container>
+        <ng-container *ngIf="isAuthenticated">
+            <a routerLink="/signup" class="sidebar_button" (click)="logout()">LogOut</a>
+        </ng-container>
+    </div>
 </div>

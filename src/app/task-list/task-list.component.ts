@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TaskService } from '../shared/services/task.service';
 import { Task } from '../shared/models/task.model';
-import { delay, map } from 'rxjs';
+import { Subject, debounceTime, delay, map, takeUntil, tap } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,25 +9,29 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
-export class TaskList implements OnInit {
-
+export class TaskList implements OnInit, OnDestroy {
+  unsubsSubject$ = new Subject()
   allTasks: Task[] = [];
   form!: FormGroup;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   constructor(
     private taskService: TaskService,
   ) { }
 
-  cons(text:string){
-    console.log(text)
-  }
 
   ngOnInit(): void {
     this.getAllTasks();
     this.form = new FormGroup({
-      description: new FormControl(null, { validators: [Validators.required, Validators.minLength(3), Validators.maxLength(300)] }),
+      description: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3), Validators.maxLength(500)]
+      }),
     })
+  }
+
+  ngOnDestroy(): void {
+    this.unsubsSubject$.next(null);
+    this.unsubsSubject$.complete()
   }
 
   getAllTasks() {
@@ -43,18 +47,16 @@ export class TaskList implements OnInit {
         })
       }))
       .subscribe(d => {
-        
+        this.isLoading = false;
         this.allTasks = d;
       })
   }
 
   addNewTask() {
-    if(this.form.invalid){
+    if (this.form.invalid) {
       return
     }
-    this.isLoading = true;
     const description = this.form.value.description;
-    const image = this.form.value.image as File;  // Extract the File object
     const newTask: Task = {
       description: this.form.value.description,
       id: '',
@@ -62,26 +64,33 @@ export class TaskList implements OnInit {
       creator: '',
     }
 
-    this.taskService.addTask(newTask).pipe(delay(300)).subscribe(d => {
-      this.getAllTasks();
-      this.form.reset();
-      this.isLoading = false;
-    });
+    this.taskService.addTask(newTask).pipe(
+      takeUntil(this.unsubsSubject$))
+      .subscribe(() => {
+        ///WHY ??
+        setTimeout(() => {
+          this.getAllTasks();
+        }, 200)
+
+        this.form.reset();
+
+      });
   }
 
   onChangeIsDone(event: boolean, task: Task) {
     const updatedTask = { ...task, isDone: event }
-    console.log(updatedTask)
     this.taskService.updateTask(updatedTask).subscribe()
   }
 
   deleteTask(id: string) {
-    this.isLoading = true;
     if (id) {
-      this.taskService.deleteTask(id).pipe(delay(300)).subscribe(d => {
-        this.getAllTasks()
-        this.isLoading= false
-      })
+      this.taskService.deleteTask(id)
+        .pipe(takeUntil(this.unsubsSubject$), debounceTime(200))
+        .subscribe(() => {
+          this.getAllTasks()
+          // //Better user experience, longer spinner rendering 
+          //   this.isLoading = false;
+        })
     }
   }
 

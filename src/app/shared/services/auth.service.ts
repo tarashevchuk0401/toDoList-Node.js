@@ -48,13 +48,11 @@ export class AuthService {
 
         const expirationInDuration = response.expiresIn;
         const now = new Date();
-        const expirationDate = new Date(now.getTime() + expirationInDuration * 1000)
+        const expirationDate = new Date(now.getTime() + expirationInDuration * 1000);
         this.saveAuthData(token, expirationDate, this.userId);
         this.setAuthTimer(response.expiresIn);
         this.router.navigate(['task']);
       }
-
-
     })
   }
 
@@ -75,8 +73,6 @@ export class AuthService {
           this.setAuthTimer(response.expiresIn);
           this.router.navigate(['task']);
         }
-
-
       })
   }
 

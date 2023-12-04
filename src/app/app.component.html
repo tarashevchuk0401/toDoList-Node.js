@@ -1,21 +1,22 @@
-<!-- Toolbar -->
-<mat-toolbar class="mat-elevation-z5">
-  <button mat-button (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <!-- Header -->
-  <app-header></app-header>
-</mat-toolbar>
+  <!-- Toolbar -->
+  <mat-toolbar class="mat-elevation-z5">
+    <button class="header_icon" mat-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Header -->
+    <app-header></app-header>
+  </mat-toolbar>
 
-<!-- Sidenav -->
-<mat-sidenav-container [hasBackdrop]="false">
-  <mat-sidenav #drawer mode="over" closed>
-    <app-sidebar></app-sidebar>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <main>
-      <!-- Router-outlet -->
-      <router-outlet></router-outlet>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <!-- Sidenav -->
+  <mat-sidenav-container [hasBackdrop]="true">
+    <mat-sidenav #drawer mode="over" closed>
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <main>
+        <!-- Router-outlet -->
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+

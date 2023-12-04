@@ -5,19 +5,33 @@ main {
     background: linear-gradient(90deg, rgba(205, 213, 222, 1) 0%, rgba(126, 160, 185, 1) 100%);
     margin: 0;
     padding: 0;
-    min-height: 91vh;
+    min-height: 90vh;
 }
 
+mat-sidenav{
+    height: 100%;
+    background-color: $color_main_blue;
+
+}
 
 mat-toolbar {
     background-color: $color_dark_blue;
     display: flex;
-    // justify-content: space-between;
     z-index: 2;
     position: relative;
+    height: 10vh;
 }
 
 app-header{
     display: flex;
     flex-grow: 1;
+}
+
+.header_icon{
+    display: flex;
+    justify-content: center;
+
+    mat-icon{
+        margin: 0 auto;
+    }
 }

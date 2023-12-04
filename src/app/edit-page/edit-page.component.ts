@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from '../shared/models/task.model';
 import { TaskService } from '../shared/services/task.service';
-import { Subscription, switchMap } from 'rxjs';
+import { Subscription, debounceTime, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-page',
@@ -10,6 +10,7 @@ import { Subscription, switchMap } from 'rxjs';
   styleUrls: ['./edit-page.component.scss']
 })
 export class EditPageComponent implements OnInit, OnDestroy {
+  isLoading: boolean = true;
   currentTaskId: string = '';
   currentTask!: Task ;
   private routeSubscription = new Subscription;
@@ -23,11 +24,14 @@ export class EditPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.routeSubscription = this.activatedRoute.params
-      .pipe(switchMap(params => {
+    // DebounceTime added for longer rendering of spinner
+      .pipe(debounceTime(500) ,switchMap(params => {
         this.currentTaskId = params['id'];
         return this.taskService.getTaskById(this.currentTaskId);
       }))
       .subscribe(data => {
+      
+        this.isLoading = false        
         const fetchedTask: Task  ={
           id: data.task._id,
           description: data.task.description,
@@ -35,8 +39,6 @@ export class EditPageComponent implements OnInit, OnDestroy {
           creator: data.task.creator
         }
         this.currentTask = fetchedTask;
-        console.log(this.currentTask)
-        
       })
   }
 

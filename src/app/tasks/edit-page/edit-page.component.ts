@@ -54,7 +54,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
     if (this.currentTask) {
       this.currentTask = { ...this.currentTask, description: description };
       this.updateSubscription = this.taskService.updateTask(this.currentTask).subscribe(() => {
-        this.router.navigate(['task'])
+        this.router.navigate(['task/all'])
       });
     }
   }

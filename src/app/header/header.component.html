@@ -1,6 +1,8 @@
 <div class="wrapper">
   <div class="left">
-      <a  class="header_button" routerLink="task">Tasks</a>
+    <ng-container *ngIf="isAuthenticated">
+      <a  class="header_button" routerLink="task/all">Tasks</a>
+    </ng-container>
   </div>
   <div class="rigth">
     <ng-container *ngIf="!isAuthenticated" >

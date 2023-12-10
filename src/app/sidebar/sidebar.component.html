@@ -1,5 +1,7 @@
 <div class="wrapper">
-    <a class="sidebar_button" routerLink="task">Tasks</a>
+    <ng-container *ngIf="isAuthenticated">
+        <a class="sidebar_button" routerLink="task/all">Tasks</a>
+    </ng-container>
     <div class="auth_action">
         <ng-container *ngIf="!isAuthenticated">
             <a class="sidebar_button" routerLink="login">LogIn</a>

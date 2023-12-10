@@ -51,7 +51,7 @@ export class AuthService {
         const expirationDate = new Date(now.getTime() + expirationInDuration * 1000);
         this.saveAuthData(token, expirationDate, this.userId);
         this.setAuthTimer(response.expiresIn);
-        this.router.navigate(['task']);
+        this.router.navigate(['task/all']);
       }
     })
   }
@@ -71,7 +71,7 @@ export class AuthService {
           const expirationDate = new Date(now.getTime() + expirationInDuration * 1000)
           this.saveAuthData(token, expirationDate, this.userId);
           this.setAuthTimer(response.expiresIn);
-          this.router.navigate(['task']);
+          this.router.navigate(['task/all']);
         }
       })
   }

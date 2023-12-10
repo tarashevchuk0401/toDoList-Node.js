@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Task } from '../shared/models/task.model';
-import { TaskService } from '../shared/services/task.service';
+import { Task } from '../../shared/models/task.model';
+import { TaskService } from '../../shared/services/task.service';
 import { Subscription, debounceTime, switchMap } from 'rxjs';
 
 @Component({
@@ -29,8 +29,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         this.currentTaskId = params['id'];
         return this.taskService.getTaskById(this.currentTaskId);
       }))
-      .subscribe(data => {
-      
+      .subscribe(data => { 
         this.isLoading = false        
         const fetchedTask: Task  ={
           id: data.task._id,

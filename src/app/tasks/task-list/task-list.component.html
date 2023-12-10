@@ -26,7 +26,7 @@
                         (change)="onChangeIsDone($event.checked, task)"></mat-checkbox>
                     <div class="text">{{task.description}} </div>
                     <div class="task_action">
-                        <button class="button_main blue" routerLink="/edit-page/{{task.id}}">
+                        <button class="button_main blue" routerLink="/task/edit-page/{{task.id}}">
                             <mat-icon>edit</mat-icon>
                         </button>
                         <button class="button_main red" (click)="deleteTask(task.id)">

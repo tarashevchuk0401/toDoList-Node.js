@@ -32,7 +32,6 @@ export class SignupComponent implements OnInit {
     } else if(this.authMode === 'login'){
       this.logIn(authForm);
     }
-    // authForm.reset()
   }
   
   signUp(authForm: NgForm): void{

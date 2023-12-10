@@ -36,6 +36,7 @@ router.post('/signup', (req, res, next) => {
                 password: hash,
                 name: req.body.name,
             })
+            console.log(user)
             user.save()
                 .then(result => {
                     if (!result) {
@@ -54,9 +55,10 @@ router.post('/signup', (req, res, next) => {
                         expiresIn: 3600,
                         userId: result.id
                     })
-                }).catch(error => {
+                })
+                .catch(error => {
                     return res.status(400).json({
-                        message: error
+                        message: 'Rigistration failed. Email already exist'
                     })
                 })
         })
@@ -78,7 +80,7 @@ router.post('/login', (req, res, next) => {
         .then(result => {
             if (!result) {
                 return res.status(401).json({
-                    message: 'Email not found'
+                    message: 'Email not found or wrong password'
                 })
             }
 

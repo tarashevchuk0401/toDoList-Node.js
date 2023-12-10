@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TaskService } from '../shared/services/task.service';
-import { Task } from '../shared/models/task.model';
+import { TaskService } from '../../shared/services/task.service';
+import { Task } from '../../shared/models/task.model';
 import { Subject, debounceTime, delay, map, takeUntil, tap } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -18,7 +18,6 @@ export class TaskList implements OnInit, OnDestroy {
   constructor(
     private taskService: TaskService,
   ) { }
-
 
   ngOnInit(): void {
     this.getAllTasks();
@@ -71,9 +70,7 @@ export class TaskList implements OnInit, OnDestroy {
         setTimeout(() => {
           this.getAllTasks();
         }, 200)
-
         this.form.reset();
-
       });
   }
 

@@ -23,7 +23,7 @@ exports.createUser = (req, res, next) => {
                     const token = jwt.sign({
                         email: result.email,
                         userId: result.id
-                    }, 'secret_this_should_be_longer', { expiresIn: "1h" });
+                    }, process.env.JWT_KEY, { expiresIn: "1h" });
 
                     return res.status(200).json({
                         token: token,
@@ -62,7 +62,7 @@ exports.userLogin = (req, res, next) => {
             const token = jwt.sign({
                 email: fetchedUser.email,
                 userId: fetchedUser.id
-            }, 'secret_this_should_be_longer', { expiresIn: "1h" });
+            }, process.env.JWT_KEY, { expiresIn: "1h" });
 
             return res.status(200).json({
                 token: token,

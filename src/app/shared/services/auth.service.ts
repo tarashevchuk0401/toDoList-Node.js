@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environment/environment';
+
+
+const BACKEND_URL =  environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +41,7 @@ export class AuthService {
   }
 
   signup(user: User) {
-    return this.http.post<{ token: string, expiresIn: number, userId: string }>('http://localhost:3000/api/users/signup', user)
+    return this.http.post<{ token: string, expiresIn: number, userId: string }>(BACKEND_URL + '/users/signup', user)
     .subscribe(response => {
       const token = response.token;
       if (token) {
@@ -57,7 +61,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<{ token: string, expiresIn: number, userId: string }>('http://localhost:3000/api/users/login', { email: email, password: password })
+    return this.http.post<{ token: string, expiresIn: number, userId: string }>(BACKEND_URL + '/users/login', { email: email, password: password })
       .subscribe(response => {
         const token = response.token;
         if (token) {

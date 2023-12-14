@@ -18,8 +18,8 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.authServise.authorizationMode.subscribe((data: string) => {
-      this.authMode = data
-    })
+      this.authMode = data;
+    });
   }
 
   changeAuthMode(value: string): void{
@@ -40,13 +40,12 @@ export class SignupComponent implements OnInit {
       email: authForm.value.email,
       password: authForm.value.password,
       name: authForm.value.name,
-    }
+    };
   
-    this.authServise.signup(newUser)
+    this.authServise.signup(newUser);
   }
 
   logIn(authForm: NgForm){
-      this.authServise.login(authForm.value.email, authForm.value.password)
-
+      this.authServise.login(authForm.value.email, authForm.value.password);
   }
 }

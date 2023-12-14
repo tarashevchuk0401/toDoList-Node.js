@@ -31,7 +31,7 @@ exports.createUser = (req, res, next) => {
                         userId: result.id
                     })
                 })
-                .catch(error => {
+                .catch(() => {
                     return res.status(400).json({
                         message: 'Rigistration failed. Email already exist'
                     })

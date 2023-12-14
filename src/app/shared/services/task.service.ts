@@ -14,15 +14,15 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   getAllTasks(): Observable<any> {
-    return this.http.get(BACKEND_URL + '/tasks')
+    return this.http.get(BACKEND_URL + '/tasks');
   }
 
   addTask(taskData: Task): Observable<any> {
-    return this.http.post(BACKEND_URL + '/tasks', taskData)
+    return this.http.post(BACKEND_URL + '/tasks', taskData);
   }
 
   updateTask(taskData: Task): Observable<{message: string}>{
-    return this.http.put<{message: string}>(BACKEND_URL + '/tasks', taskData)
+    return this.http.put<{message: string}>(BACKEND_URL + '/tasks', taskData);
   }
 
   getTaskById(id: string){

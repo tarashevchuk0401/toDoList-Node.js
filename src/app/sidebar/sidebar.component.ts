@@ -14,15 +14,15 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getIsAuthenticated().subscribe(response => {
-      this.isAuthenticated = response
-    })
-    
-    this.authService.getAuthStatusListener().subscribe(response =>{
-       this.isAuthenticated = response
-      })
+      this.isAuthenticated = response;
+    });
+
+    this.authService.getAuthStatusListener().subscribe(response => {
+      this.isAuthenticated = response;
+    });
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 

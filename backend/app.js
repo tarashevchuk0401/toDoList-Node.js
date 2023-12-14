@@ -27,6 +27,4 @@ app.use((req, res, next) => {
 app.use('/api/tasks', taskRoutes)
 app.use('/api/users', userRoutes)
 
-
-
 module.exports = app;

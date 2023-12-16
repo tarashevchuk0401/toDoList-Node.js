@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TaskService } from '../../shared/services/task.service';
 import { Task } from '../../shared/models/task.model';
-import { Subject, debounceTime, delay, map, takeUntil, tap } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, concat, delay, takeUntil } from 'rxjs';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
@@ -34,28 +34,17 @@ export class TaskList implements OnInit, OnDestroy {
   }
 
   getAllTasks() {
-    this.taskService.getAllTasks()
-      .pipe(map(item => {
-        return item.tasks.map((task: any) => {
-          return {
-            id: task._id,
-            description: task.description,
-            isDone: task.isDone,
-            creator: task.creator
-          }
-        })
-      }))
-      .subscribe(d => {
-        this.isLoading = false;
-        this.allTasks = d;
-      })
+    this.taskService.getAllTasks().subscribe(tasks => {
+      this.isLoading = false;
+      this.allTasks = tasks;
+    })
   }
 
   addNewTask() {
     if (this.form.invalid) {
       return
     }
-    const description = this.form.value.description;
+
     const newTask: Task = {
       description: this.form.value.description,
       id: '',
@@ -63,15 +52,10 @@ export class TaskList implements OnInit, OnDestroy {
       creator: '',
     }
 
-    this.taskService.addTask(newTask).pipe(
-      takeUntil(this.unsubsSubject$))
-      .subscribe(() => {
-        ///WHY ??
-        setTimeout(() => {
-          this.getAllTasks();
-        }, 200)
-        this.form.reset();
-      });
+    // Creating one observable from  two separete observables. Executing in sequence
+    concat(this.taskService.addTask(newTask), this.taskService.getAllTasks())
+      .pipe(takeUntil(this.unsubsSubject$))
+      .subscribe(tasks => this.allTasks = tasks);
   }
 
   onChangeIsDone(event: boolean, task: Task) {
@@ -80,15 +64,19 @@ export class TaskList implements OnInit, OnDestroy {
   }
 
   deleteTask(id: string) {
-    if (id) {
-      this.taskService.deleteTask(id)
-        .pipe(takeUntil(this.unsubsSubject$), debounceTime(200))
-        .subscribe(() => {
-          this.getAllTasks()
-          // //Better user experience, longer spinner rendering 
-          //   this.isLoading = false;
-        })
+    if (!id) {
+      return
     }
+
+    this.isLoading = true;
+
+    concat(this.taskService.deleteTask(id), this.taskService.getAllTasks())
+      // //Better user experience, longer spinner rendering 
+      .pipe(takeUntil(this.unsubsSubject$), delay(500))
+      .subscribe(tasks => {
+        this.allTasks = tasks;
+        this.isLoading = false;
+      });
   }
 
 

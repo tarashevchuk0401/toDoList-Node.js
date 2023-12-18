@@ -32,7 +32,7 @@ export class AuthService {
     this.authorizationMode.next(value);
   }
 
-  getIsAuthenticated(){
+  getIsAuthenticated(): Observable<boolean>{
     return of(this.isAuthenticated);
   }
   

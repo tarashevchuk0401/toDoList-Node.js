@@ -17,9 +17,9 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.authServise.authorizationMode.subscribe((data: string) => {
-    //   this.authMode = data;
-    // });
+    this.authServise.authorizationMode.subscribe((data: string) => {
+      this.authMode = data;
+    });
   }
 
   changeAuthMode(value: string): void{

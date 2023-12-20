@@ -24,6 +24,7 @@ export class SidebarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    // return true
   }
 
 

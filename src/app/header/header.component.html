@@ -9,6 +9,6 @@
       <a class="header_button" routerLink="signup" (click)="changeAuthorizationMode('signup')">SignUp</a> 
       <a class="header_button" routerLink="signup" (click)="changeAuthorizationMode('login')">LogIn</a> 
     </ng-container>
-      <a class="header_button" *ngIf="isAuthenticated" (click)="logOut()">Logout</a>
+      <a class="header_button logout" *ngIf="isAuthenticated" (click)="logOut()">Logout</a>
   </div>
 </div>

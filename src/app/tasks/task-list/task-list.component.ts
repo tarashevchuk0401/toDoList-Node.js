@@ -52,7 +52,7 @@ export class TaskList implements OnInit, OnDestroy {
       creator: '',
     }
 
-    // Creating one observable from  two separete observables. Executing in sequence
+    // Creating one observable from  two separate observables. Executing in sequence
     concat(this.taskService.addTask(newTask), this.taskService.getAllTasks())
       .pipe(takeUntil(this.unsubsSubject$))
       .subscribe(tasks => this.allTasks = tasks);

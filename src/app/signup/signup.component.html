@@ -35,7 +35,7 @@
             <button class="button_main onSubmit" type="submit" [disabled]="authForm.invalid">{{authMode }}</button>
             <ng-container *ngIf="authMode === 'signup'">
                 <div class="redirect">
-                    <div>Already hava account?</div>
+                    <div>Already have account?</div>
                     <div class="link_container">Go to
                         <a class="link" (click)="changeAuthMode('login')">Login</a>
                     </div>
@@ -43,7 +43,7 @@
             </ng-container>
             <ng-container *ngIf="authMode === 'login'">
                 <div class="redirect">
-                    <div>Dont hava account?</div>
+                    <div>Don't have account?</div>
                     <div class="link_container">Go to
                         <a class="link" (click)="changeAuthMode('signup')">SignUp</a>
                     </div>

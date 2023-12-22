@@ -9,6 +9,7 @@ import { AuthService } from '../shared/services/auth.service';
 export class SidebarComponent implements OnInit {
 
   isAuthenticated: boolean = false;
+  
 
   constructor(private authService: AuthService) { }
 
@@ -24,7 +25,7 @@ export class SidebarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    // return true
+    
   }
 
 

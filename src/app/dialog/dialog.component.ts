@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class DialogComponent {
   message: string = 'Unknown error'
 
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string }) { }
 }
 

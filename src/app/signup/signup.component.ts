@@ -13,17 +13,17 @@ export class SignupComponent implements OnInit {
   authMode: string = '';
 
   constructor(
-    private authServise: AuthService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
-    this.authServise.authorizationMode.subscribe((data: string) => {
+    this.authService.authorizationMode.subscribe((data: string) => {
       this.authMode = data;
     });
   }
 
   changeAuthMode(value: string): void{
-    this.authServise.authorizationMode.next(value);
+    this.authService.authorizationMode.next(value);
   }
 
   onSubmit(authForm: NgForm): void {
@@ -42,10 +42,10 @@ export class SignupComponent implements OnInit {
       name: authForm.value.name,
     };
   
-    this.authServise.signup(newUser);
+    this.authService.signup(newUser);
   }
 
   logIn(authForm: NgForm){
-      this.authServise.login(authForm.value.email, authForm.value.password);
+      this.authService.login(authForm.value.email, authForm.value.password);
   }
 }

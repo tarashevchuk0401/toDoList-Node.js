@@ -10,9 +10,9 @@ export class AppComponent  implements OnInit{
   
   title = 'to-do-node';
 
-  constructor(private authSerivce: AuthService){}
+  constructor(private authService: AuthService){}
 
   ngOnInit(): void {
-    this.authSerivce.autoAuth();
+    this.authService.autoAuth();
   }
 }

@@ -7,7 +7,7 @@
                     name="description" ngModel minlength="1" #description required></textarea>
             </mat-form-field>
             <div class="actions">
-                <button class="button_main blue" type="submit" [disabled]="edit.invalid">
+                <button class="button_main blue edit" type="submit" [disabled]="edit.invalid">
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button class="button_main cancel red" routerLink="/task/all">

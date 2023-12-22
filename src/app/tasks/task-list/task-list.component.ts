@@ -56,6 +56,7 @@ export class TaskList implements OnInit, OnDestroy {
     concat(this.taskService.addTask(newTask), this.taskService.getAllTasks())
       .pipe(takeUntil(this.unsubsSubject$))
       .subscribe(tasks => this.allTasks = tasks);
+  
   }
 
   onChangeIsDone(event: boolean, task: Task) {

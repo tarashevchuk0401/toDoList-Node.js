@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { HeaderComponent } from './header.component';
 import { AuthService } from '../shared/services/auth.service';
 import { DebugElement, inject } from '@angular/core';
-import { auth } from 'firebase-functions/v1';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 

@@ -64,7 +64,7 @@ Backend will run at `http://localhost:3000`
 Run tests:
  ```bash
     ng test
-    ```
+```
 ## Accessing the Application
 
 Open your web browser and navigate to [http://localhost:4200](http://localhost:4200) to access the ToDo application.

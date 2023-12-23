@@ -2,10 +2,19 @@
 
 This project is a simple ToDo application built with Angular for the frontend and Node.js for the backend. Follow the instructions below to set up and run the application on your local machine.
 ## Tools
-For this project I've been used Angular, Angular Materials, RxJS, GIT, Node.js, Express, JsonWebToken, MongoDB, Mongoose, Responsive wed design, SCSS, Unit tests (Jasmine/Karma)
-
-
-
+For this project I've been used 
+Angular, 
+Angular Materials,
+RxJS,
+GIT,
+Node.js,
+Express,
+JsonWebToken,
+MongoDB,
+Mongoose,
+Responsive wed design,
+SCSS,
+Unit tests (Jasmine/Karma)
 
 ## Prerequisites
 
